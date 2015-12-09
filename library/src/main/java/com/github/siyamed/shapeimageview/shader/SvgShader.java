@@ -144,6 +144,11 @@ public class SvgShader extends ShaderHelper {
         canvas.restore();
     }
 
+    @Override public void reset() {
+//        borderPath.reset();
+//        path.reset();
+    }
+
     @Override
     public void calculate(int bitmapWidth, int bitmapHeight, float width, float height, float scale, float translateX, float translateY) {
         path.reset();
@@ -190,11 +195,8 @@ public class SvgShader extends ShaderHelper {
         path.transform(pathMatrix);
     }
 
-    @Override
-    public void reset() {
-        path.reset();
-        borderPath.reset();
+    public Path getPath() {
+        return borderPath;
     }
-
 
 }

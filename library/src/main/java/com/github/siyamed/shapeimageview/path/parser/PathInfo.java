@@ -38,4 +38,8 @@ public class PathInfo {
     public void transform(Matrix matrix, Path dst) {
         path.transform(matrix, dst);
     }
+
+    public Path getPath() {
+        return path;
+    }
 }

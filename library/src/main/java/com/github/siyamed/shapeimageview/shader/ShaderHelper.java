@@ -88,9 +88,7 @@ public abstract class ShaderHelper {
         if(isSquare()) {
             viewWidth = viewHeight = Math.min(width, height);
         }
-        if(shader != null) {
-            calculateDrawableSizes();
-        }
+        calculateDrawableSizes();
     }
 
     public Bitmap calculateDrawableSizes() {
