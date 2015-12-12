@@ -137,16 +137,18 @@ public class SvgShader extends ShaderHelper {
 
     @Override
     public void draw(Canvas canvas, Paint imagePaint, Paint borderPaint) {
-        canvas.save();
+      canvas.save();
+      if (borderWidth > 0) {
         canvas.drawPath(borderPath, borderPaint);
-        canvas.concat(matrix);
-        canvas.drawPath(path, imagePaint);
-        canvas.restore();
+      }
+      canvas.concat(matrix);
+      canvas.drawPath(path, imagePaint);
+      canvas.restore();
     }
 
     @Override public void reset() {
-//        borderPath.reset();
-//        path.reset();
+        borderPath.reset();
+        path.reset();
     }
 
     @Override
@@ -167,28 +169,26 @@ public class SvgShader extends ShaderHelper {
         shapePath.transform(pathMatrix, path);
         path.offset(borderWidth, borderWidth);
 
-        if(borderWidth > 0) {
-            pathMatrix.reset();
-            float newWidth;
-            float newHeight;
-            float d;
-            if(borderType == BORDER_TYPE_DEFAULT) {
-                newWidth = viewWidth-borderWidth;
-                newHeight = viewHeight-borderWidth;
-                d = borderWidth / 2f;
-            } else {
-                newWidth = viewWidth;
-                newHeight = viewHeight;
-                d = 0;
-            }
-            scale = Math.min(newWidth / pathDimensions[0], newHeight / pathDimensions[1]);
-            translateX = Math.round((newWidth - pathDimensions[0] * scale) * 0.5f + d);
-            translateY = Math.round((newHeight - pathDimensions[1] * scale) * 0.5f + d);
-            pathMatrix.setScale(scale, scale);
-            pathMatrix.postTranslate(translateX, translateY);
-            shapePath.transform(pathMatrix, borderPath);
-//            borderPath.op(path, Path.Op.DIFFERENCE);
+        pathMatrix.reset();
+        float newWidth;
+        float newHeight;
+        float d;
+        if(borderType == BORDER_TYPE_DEFAULT) {
+            newWidth = viewWidth-borderWidth;
+            newHeight = viewHeight-borderWidth;
+            d = borderWidth / 2f;
+        } else {
+            newWidth = viewWidth;
+            newHeight = viewHeight;
+            d = 0;
         }
+        scale = Math.min(newWidth / pathDimensions[0], newHeight / pathDimensions[1]);
+        translateX = Math.round((newWidth - pathDimensions[0] * scale) * 0.5f + d);
+        translateY = Math.round((newHeight - pathDimensions[1] * scale) * 0.5f + d);
+        pathMatrix.setScale(scale, scale);
+        pathMatrix.postTranslate(translateX, translateY);
+        shapePath.transform(pathMatrix, borderPath);
+//      borderPath.op(path, Path.Op.DIFFERENCE);
 
         pathMatrix.reset();
         matrix.invert(pathMatrix);
