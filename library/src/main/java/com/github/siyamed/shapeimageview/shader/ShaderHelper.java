@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
@@ -67,6 +68,11 @@ public abstract class ShaderHelper {
         borderPaint.setColor(borderColor);
         borderPaint.setAlpha(Float.valueOf(borderAlpha * ALPHA_MAX).intValue());
         borderPaint.setStrokeWidth(borderWidth);
+    }
+
+    public void setColorFilter(ColorFilter colorFilter) {
+        borderPaint.setColorFilter(colorFilter);
+        imagePaint.setColorFilter(colorFilter);
     }
 
     public boolean onDraw(Canvas canvas) {

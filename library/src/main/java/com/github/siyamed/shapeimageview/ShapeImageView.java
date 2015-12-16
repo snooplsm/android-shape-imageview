@@ -1,6 +1,7 @@
 package com.github.siyamed.shapeimageview;
 
 import android.content.Context;
+import android.graphics.ColorFilter;
 import android.util.AttributeSet;
 
 import com.github.siyamed.shapeimageview.shader.ShaderHelper;
@@ -58,6 +59,13 @@ public class ShapeImageView extends ShaderImageView {
     public void setShapeResId(int resId) {
         if(shader != null) {
             shader.setShapeResId(getContext(), resId);
+            invalidate();
+        }
+    }
+
+    public void setColorFilter(ColorFilter colorFilter) {
+        if(shader != null) {
+            shader.setColorFilter(colorFilter);
             invalidate();
         }
     }

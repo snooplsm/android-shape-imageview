@@ -3,6 +3,7 @@ package com.github.siyamed.shapeimageview;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -109,6 +110,11 @@ public abstract class ShaderImageView extends ImageView {
     public void setBorderAlpha(final float borderAlpha) {
         getPathHelper().setBorderAlpha(borderAlpha);
         invalidate();
+    }
+
+    @Override public void setColorFilter(ColorFilter cf) {
+        getPathHelper().setColorFilter(cf);
+        super.setColorFilter(cf);
     }
 
     public void setSquare(final boolean square) {
