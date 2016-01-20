@@ -71,7 +71,14 @@ public abstract class ShaderHelper {
     }
 
     public void setColorFilter(ColorFilter colorFilter) {
+        imagePaint.setColorFilter(colorFilter);
+    }
+
+    public void setBorderColorFilter(ColorFilter colorFilter) {
         borderPaint.setColorFilter(colorFilter);
+    }
+
+    public void setFillColorFilter(ColorFilter colorFilter) {
         imagePaint.setColorFilter(colorFilter);
     }
 
